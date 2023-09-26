@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/quick-job-japan-dev/gcp-deploy:$SHORT_SHA', '.']
-
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/quick-job-japan-dev/gcp-deploy:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'gcp-deploy', '--region=asia-east2', '--platform=managed', '--image=gcr.io/quick-job-japan-dev/gcp-deploy:$SHORT_SHA']
