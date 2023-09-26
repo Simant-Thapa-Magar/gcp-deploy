@@ -1,4 +1,4 @@
 FROM node:latest
-WORDIR /app
+WORkDIR /app
 ADD . /app
 CMD node server.js
